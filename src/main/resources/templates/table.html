@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<meta charset=utf-8>
+<title>Powershell</title>
+</head>
+<body>
+	<h2 align="center" >Select a process to kill:</h2>
+	<form action="#"  th:action="@{/kill/}" th:object=${selectedProcess} method="post">
+		<table class="table table-striped" >
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Id</th>
+					<th>CPU</th>
+					<th>Selected Process</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${allProcesses.empty}">
+					<td colspan="2">No processes available</td>
+				</tr>
+				<tr th:each="process : ${allProcesses}">
+					<td th:text="${process.name}"></td>
+					<td th:text="${process.id}"></td>
+					<td th:text="${process.cpu}"></td>
+					<td><input type="radio" name="option" th:field="*{id}" th:value="${process.id}" required></td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" class="btn btn-primary" value="Submit">
+	</form>
+</body>
+</html>

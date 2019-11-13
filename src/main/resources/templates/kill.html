@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:"http://www.w3.org/1999/xhtml" xmlns:th="http:thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+</head>
+<body>
+	The process
+	<label th:text=${killedProcess.name}></label> with id:
+	<label th:text=${killedProcess.id}></label> was successfully killed.
+	<br>
+	<button type="submit">
+		<a href="/windows/">Show process</a>
+	</button>
+</body>
+</html>
