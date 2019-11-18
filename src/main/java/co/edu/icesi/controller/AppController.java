@@ -35,6 +35,13 @@ public class AppController {
 		return "table";
 	}
 	
+	@GetMapping("/linux/")
+	public String bash(Model model) {
+		model.addAttribute("allProcesses", processServiceLinux.findAll());
+		model.addAttribute("selectedProcess", new MyProcess());
+		return "table";
+	}
+	
 	@PostMapping("/kill/")
 	public String method(@ModelAttribute("selectedProcess") MyProcess process, Model model) {
 		MyProcess killedProcess = processServiceWindows.findById(process.getId());

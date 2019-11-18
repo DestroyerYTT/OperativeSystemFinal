@@ -28,6 +28,7 @@ public class MyProcessServiceLinux implements MyProcessService {
 
 	@Override
 	public List<MyProcess> findAll() {
+		initProcesses();
 		return processRepository.getValues();
 	}
 
