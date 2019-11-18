@@ -3,6 +3,7 @@ package co.edu.icesi.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,12 @@ import co.edu.icesi.service.MyProcessService;
 public class AppController {
 	
 	@Autowired
-	private MyProcessService processService;
+	@Qualifier("windowsService")
+	private MyProcessService processServiceWindows;
+	
+	@Autowired
+	@Qualifier("linuxService")
+	private MyProcessService processServiceLinux;
 	
 	@GetMapping("/")
 	public String index() {
@@ -24,15 +30,15 @@ public class AppController {
 	
 	@GetMapping("/windows/")
 	public String powershell(Model model) {
-		model.addAttribute("allProcesses", processService.findAll());
+		model.addAttribute("allProcesses", processServiceWindows.findAll());
 		model.addAttribute("selectedProcess", new MyProcess());
 		return "table";
 	}
 	
 	@PostMapping("/kill/")
 	public String method(@ModelAttribute("selectedProcess") MyProcess process, Model model) {
-		MyProcess killedProcess = processService.findById(process.getId());
-		processService.killProcess(process.getId());
+		MyProcess killedProcess = processServiceWindows.findById(process.getId());
+		processServiceWindows.killProcess(process.getId());
 		model.addAttribute("killedProcess", killedProcess);
 		return "kill"; 
 		

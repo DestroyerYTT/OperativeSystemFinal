@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:thymeleaf.org">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <meta charset=utf-8>
 <title>Powershell</title>
+<style type="text/css">
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+}
+</style>
 </head>
 <body>
-	<h2 align="center" >Select a process to kill:</h2>
+	<h2 align="center" >Select a process to kill</h2>
+	<br>
 	<form action="#"  th:action="@{/kill/}" th:object=${selectedProcess} method="post">
-		<table class="table table-striped" >
+		<table style="width: 70%; margin:auto;" class="table table-striped table table-bordered" >
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -29,7 +43,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="submit" class="btn btn-primary" value="Submit">
+		<input type="submit" class="float" value="Submit">
 	</form>
 </body>
 </html>

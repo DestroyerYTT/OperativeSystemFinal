@@ -7,18 +7,20 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import co.edu.icesi.model.MyProcess;
 import co.edu.icesi.repository.MyProcessRepository;
 
 @Service
-public class MyProcessServiceImp implements MyProcessService{
+@Qualifier("windowsService")
+public class MyProcessServiceWindows implements MyProcessService{
 	
 	private MyProcessRepository processRepository;
 
 	@Autowired
-	public MyProcessServiceImp(MyProcessRepository processRepository) {
+	public MyProcessServiceWindows(MyProcessRepository processRepository) {
 		super();
 		this.processRepository = processRepository;
 	}
@@ -73,7 +75,7 @@ public class MyProcessServiceImp implements MyProcessService{
 			
 			
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 
