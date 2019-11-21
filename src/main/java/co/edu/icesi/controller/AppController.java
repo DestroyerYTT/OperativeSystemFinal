@@ -32,24 +32,32 @@ public class AppController {
 	public String powershell(Model model) {
 		model.addAttribute("allProcesses", processServiceWindows.findAll());
 		model.addAttribute("selectedProcess", new MyProcess());
-		return "table";
+		return "tableWindows";
 	}
 	
 	@GetMapping("/linux/")
 	public String bash(Model model) {
 		model.addAttribute("allProcesses", processServiceLinux.findAll());
 		model.addAttribute("selectedProcess", new MyProcess());
-		return "table";
+		return "tableLinux";
 	}
 	
-	@PostMapping("/kill/")
-	public String method(@ModelAttribute("selectedProcess") MyProcess process, Model model) {
+	@PostMapping("/killWindows/")
+	public String methodWindows(@ModelAttribute("selectedProcess") MyProcess process, Model model) {
 		MyProcess killedProcess = processServiceWindows.findById(process.getId());
 		processServiceWindows.killProcess(process.getId());
 		model.addAttribute("killedProcess", killedProcess);
-		return "kill"; 
+		return "killWindows"; 
 		
 	}
 	
+	@PostMapping("/killLinux/")
+	public String methodLinux(@ModelAttribute("selectedProcess") MyProcess process, Model model) {
+		MyProcess killedProcess = processServiceLinux.findById(process.getId());
+		processServiceLinux.killProcess(process.getId());
+		model.addAttribute("killedProcess", killedProcess);
+		return "killLinux"; 
+		
+	}
 
 }

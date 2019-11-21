@@ -8,12 +8,12 @@
 	crossorigin="anonymous">
 <title></title>
 </head>
-<body>
-	The process
-	<label th:text=${killedProcess.name}></label> with id:
-	<label th:text=${killedProcess.id}></label> was successfully killed.
-	<br>
+<body style="text-align: center">
+	<p>
+		The process <label th:text=${killedProcess.name}></label> with id: <label
+			th:text=${killedProcess.id}></label> was successfully killed
+	</p>
 	<a class="btn btn-success" href="/windows/">Show process</a>
-	
+	<a class="btn btn-primary" href="/">Go back</a>
 </body>
 </html>
